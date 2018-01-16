@@ -24,28 +24,37 @@ App = React.createClass({
         this.setState({
             loading: true,
         });
-        this.getGif(searchTerm, function(gif){
+
+        this.getGif(searchTerm)
+        .then((gif)=>{
             this.setState({
                 loading: false,
                 gif: gif,
                 searchTerm: searchTerm
             })
-        }.bind(this));
+        })
+        .catch(err => console.log(`getGif error: status ${err}`));
     },
-    getGif: function(searchTerm, callback){
-        let url = `${GIPHY_API_URL}/v1/gifs/random?api_key=${GIPHY_PUB_KEY}&tag=${searchTerm}`;
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                let data = JSON.parse(xhr.responseText).data;
-                let gif = {
-                    url: data.fixed_width_downsampled_url,
-                    sourceUrl: data.url
+    getGif: function(searchTerm){
+        return new Promise(
+            (resolve, reject) => {
+                let url = `${GIPHY_API_URL}/v1/gifs/random?api_key=${GIPHY_PUB_KEY}&tag=${searchTerm}`;
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        let data = JSON.parse(xhr.responseText).data;
+                        let gif = {
+                            url: data.fixed_width_downsampled_url,
+                            sourceUrl: data.url
+                        };
+                        resolve(gif);
+                    }else{
+                        reject(xhr.status);
+                    }
                 };
-                callback(gif);
+                xhr.send();
             }
-        };
-        xhr.send();
+        )
     },
 })
