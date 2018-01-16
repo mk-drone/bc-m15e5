@@ -1,0 +1,23 @@
+
+
+.app {
+    margin: 0 auto;
+    text-align: center;
+    width: 90%;
+}
+
+.searchBar {
+    font-size: 1.5em;
+    width: 90%;
+    max-width: 350px;
+}
+
+.gif-container {
+    min-height: 310px;
+    margin: 0.5em
+}
+
+.gif-image {
+    width: 100%;
+    max-width: 350px;
+}

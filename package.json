@@ -1,0 +1,24 @@
+{
+  "name": "15.5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-drone/bc-m15e5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mk-drone/bc-m15e5/issues"
+  },
+  "homepage": "https://github.com/mk-drone/bc-m15e5#readme"
+}
